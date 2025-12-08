@@ -1,0 +1,6 @@
+package com.taskmanager.dto;
+
+public class LoginRequest {
+    public String username;
+    public String password;
+}

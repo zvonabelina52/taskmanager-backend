@@ -3,6 +3,7 @@ package com.taskmanager.entity;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "tasks")
@@ -22,6 +23,11 @@ public class Task extends PanacheEntity {
     public LocalDateTime createdAt = LocalDateTime.now();
 
     public LocalDateTime updatedAt = LocalDateTime.now();
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    @JsonIgnore
+    public User user;
 
     @PreUpdate
     public void preUpdate() {
